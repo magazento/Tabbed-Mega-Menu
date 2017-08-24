@@ -1,0 +1,54 @@
+<?php
+    $tabAction = Mage::getStoreConfig('tabmegamenu/options/actiontype');
+    if ($tabAction == 'click') {
+        $hover = "false";
+    } else $hover = "true";
+    $secured = $_SERVER['SERVER_PORT']==443?true:false;
+?>
+<script type="text/javascript">
+    
+    function isNumber (o) {
+      return ! isNaN (o-0) && o != null;
+    }
+
+    function updateMenuTab(tabId) {
+        console.log(tabId);
+        new Ajax.Request("<?php echo $this->getUrl('tabmegamenu',  array("_secure"=>$secured))?>?tabId="+tabId, {
+
+          onComplete: function(response) {
+            if (200 == response.status) return true;
+          }
+        });
+    }
+
+    var currentTabId = 1;
+    new Ajax.Request('<?php echo $this->getUrl('tabmegamenu/index/getcurrenttab/',  array("_secure"=>$secured))?>', {
+      onComplete: function(response) {
+
+            var tabs = new Control.Tabs('tabs_magazento',{
+              hover: <?php echo $hover; ?>
+            });
+
+            if (200 == response.status) {
+                currentTabId = response.responseText;
+                console.log(currentTabId);
+                tabs.setActiveTab(currentTabId);
+            }
+      }
+    });
+</script>
+
+
+<div class="nav-container" style="
+     margin: 0 auto;
+     width: 950px;
+     ">
+    <div id="main">
+        <ul id="tabs_magazento" class="subsection_tabs">
+            <?php echo $this->drawTabMegamenuTabs(); ?>
+        </ul>  
+        <div>
+            <?php echo $this->drawTabMegamenuTabItems(); ?>
+        </div>
+    </div>	
+</div>

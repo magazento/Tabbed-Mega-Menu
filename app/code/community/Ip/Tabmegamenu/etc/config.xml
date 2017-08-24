@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <modules>
+        <Ip_Tabmegamenu>
+            <version>1.1.2</version>
+        </Ip_Tabmegamenu>
+    </modules>
+    <frontend>
+        <layout>
+            <updates>
+                <tabmegamenu>
+                    <file>ip_tabmegamenu.xml</file>
+                </tabmegamenu>
+            </updates>
+        </layout>
+        <routers>
+            <tabmegamenu>
+                <use>standard</use>
+                <args>
+                    <module>Ip_Tabmegamenu</module>
+                    <frontName>tabmegamenu</frontName>
+                </args>
+            </tabmegamenu>
+        </routers>
+        <!--<secure_url>-->
+            <!--<mymodule>/tabmegamenussl/</mymodule>-->
+        <!--</secure_url>-->
+        <translate>
+            <modules>
+                <Ip_Tabmegamenu>
+                    <files>
+                        <default>Ip_Tabmegamenu.csv</default>
+                    </files>
+                </Ip_Tabmegamenu>
+            </modules>
+        </translate>
+
+    </frontend>
+    
+    <global>
+        <rewrite>
+            <mage_adminhtml_system_variable>
+                <from><![CDATA[#^/tabmegamenu/system_variable#]]>
+                </from>
+                <to>/admin/system_variable</to>
+            </mage_adminhtml_system_variable>
+        </rewrite>
+        <models>
+            <tabmegamenu>
+                <class>Ip_Tabmegamenu_Model</class>
+                <resourceModel>tabmegamenu_mysql4</resourceModel>
+            </tabmegamenu>
+            <tabmegamenu_mysql4>
+                <class>Ip_Tabmegamenu_Model_Mysql4</class>
+                <entities>
+                    <tab>
+                        <table>ip_tabmegamenu_tab</table>
+                    </tab>
+                    
+                    <tab_store>
+                        <table>ip_tabmegamenu_tab_store</table>
+                    </tab_store>      
+                    <tab_item>
+                        <table>ip_tabmegamenu_tab_item</table>
+                    </tab_item>  
+                    <tab_category>
+                        <table>ip_tabmegamenu_tab_category</table>
+                    </tab_category>                                               
+                             
+                    <item>
+                        <table>ip_tabmegamenu_item</table>
+                    </item>
+                    <item_store>
+                        <table>ip_tabmegamenu_item_store</table>
+                    </item_store>
+                   
+                    <category>
+                        <table>ip_tabmegamenu_category</table>
+                    </category>
+                    <category_store>
+                        <table>ip_tabmegamenu_category_store</table>
+                    </category_store>
+                </entities>
+            </tabmegamenu_mysql4>
+        </models>
+        <resources>
+            <tabmegamenu_setup>
+                <setup>
+                    <module>Ip_Tabmegamenu</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </tabmegamenu_setup>
+            <tabmegamenu_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </tabmegamenu_write>
+            <tabmegamenu_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </tabmegamenu_read>
+        </resources>
+        <blocks>
+            <tabmegamenu>
+                <class>Ip_Tabmegamenu_Block</class>
+            </tabmegamenu>
+        </blocks>
+        <helpers>
+            <tabmegamenu>
+                <class>Ip_Tabmegamenu_Helper</class>
+            </tabmegamenu>
+        </helpers>
+    </global>
+    <admin>
+        <routers>
+            <tabmegamenu>
+                <use>admin</use>
+                <args>
+                    <module>Ip_Tabmegamenu</module>
+                    <frontName>tabmegamenu</frontName>
+                </args>
+            </tabmegamenu>
+        </routers>
+    </admin>
+    
+    <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <tabmegamenu translate="title">
+                            <title>Tabmegamenu</title>
+                            <children>
+                                <item translate="title">
+                                    <title>Manage items </title>
+                                </item>
+                            </children>
+                            <sort_order>65</sort_order>
+                        </tabmegamenu>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <tabmegamenu>
+                                            <title>Tabmegamenu</title>
+                                            <sort_order>101</sort_order>
+                                        </tabmegamenu>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <menu>
+            <cms translate="title" module="tabmegamenu">
+                <title>CMS</title>
+                <sort_order>65</sort_order>
+                <children>
+                    <tabmegamenu translate="title" module="tabmegamenu">
+                        <title>Tabbed MegaMenu</title>
+                        <sort_order>65</sort_order>
+                        <children>
+                            <tab translate="title" module="tabmegamenu">
+                                <title>Tabs / Links groups </title>
+                                <action>tabmegamenu/admin_tab/</action>
+                            </tab>                        	
+                            <item translate="title" module="tabmegamenu">
+                                <title>Items / Links</title>
+                                <action>tabmegamenu/admin_item/</action>
+                                <resource>tabmegamenu/admin/item</resource>
+                            </item>
+                            <category_item translate="title" module="tabmegamenu">
+                                <title>Catalog Categories</title>
+                                <action>tabmegamenu/admin_category</action>
+                                <resource>tabmegamenu/admin_category</resource>
+                            </category_item>
+                            <settings translate="title" module="tabmegamenu">
+                                <title>Settings</title>
+                                <action>adminhtml/system_config/edit/section/tabmegamenu</action>
+                                <sort_order>40</sort_order>
+                            </settings>
+                        </children>
+                    </tabmegamenu>
+                </children>
+            </cms>
+        </menu>
+    </adminhtml>
+    <default>
+        <tabmegamenu>
+            <options>
+                <actiontype>click</actiontype>
+                <homebutton>1</homebutton>
+                <moretext>View all...</moretext>
+                <enable>1</enable>
+                <userows>0</userows>
+                <maximumsubcat>5</maximumsubcat>
+                <menuskin>menured</menuskin>
+            </options>
+            <system>
+            	<includelivepipe>1</includelivepipe>
+            </system>                        
+            
+            <allpages>
+                <enable>1</enable>
+                <title>All Categories</title>
+                <itemalign>right</itemalign>
+                <contentalign>right</contentalign>
+            </allpages>
+<!--            <licence>
+                <email>johndoe@Magazento.com</email>
+                <serial>000000000000000000000000</serial>
+            </licence>-->
+        </tabmegamenu>
+    </default>
+</config>

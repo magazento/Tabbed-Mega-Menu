@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<layout>
+    <default>
+        <reference name="head">
+            <action method="addCss"><stylesheet>ip_tabmegamenu/tabs.css</stylesheet></action>
+            <action method="addCss"><stylesheet>ip_tabmegamenu/menustyle.css</stylesheet></action>
+        </reference>
+        
+        <reference name="top.menu">
+            <remove name="catalog.topnav" />
+            <block type="tabmegamenu/navigation" name="megamenu.navigation" 
+            	template="ip_tabmegamenu/navigation.phtml" />
+        </reference>
+    </default>
+</layout>
