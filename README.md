@@ -26,5 +26,4 @@ Feel free to contact us if you need access to Magento admin section</p>
 <p>Release v 1.0.1:<br>
 Tab state on page load \ reload. Once the user makes its initial selection (lets say Tab 2) Menu will keep showing "Tab 2" selected </p>
 
-<p><span style="text-decoration: underline;"><strong>Feel free to contact with us if you would need access to magento admin section</strong></span><br><br></p>
-<iframe width="900" height="640" src="http://www.youtube.com/embed/_nfdZayHu50" frameborder="0" allowfullscreen=""></iframe></div>
+http://www.youtube.com/embed/_nfdZayHu50
